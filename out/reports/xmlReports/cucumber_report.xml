@@ -1,0 +1,25 @@
+
+@AddPlace @Regression
+Scenario Outline: Verify if a Place is being Successfully added using Add Place API # src/test/java/features/placeValidations.feature:14
+  Given Add Place Payload with "AAHouse" "English" "World Trade Center"             # stepDefinitions.StepDefinition.add_place_payload_with(java.lang.String,java.lang.String,java.lang.String)
+  When user calls "addPlaceAPI" with "POST" http request                            # stepDefinitions.StepDefinition.user_calls_with_http_request(java.lang.String,java.lang.String)
+  Then the API call got success with status code 200                                # stepDefinitions.StepDefinition.the_api_call_got_success_with_status_code(java.lang.Integer)
+  And "status" in response body is "OK"                                             # stepDefinitions.StepDefinition.in_response_body_is(java.lang.String,java.lang.String)
+  And "scope" in response body is "APP"                                             # stepDefinitions.StepDefinition.in_response_body_is(java.lang.String,java.lang.String)
+  And verify place_Id created maps to "AAHouse" using "getPlaceAPI"                 # stepDefinitions.StepDefinition.verify_place_id_created_maps_to_using(java.lang.String,java.lang.String)
+
+@AddPlace @Regression
+Scenario Outline: Verify if a Place is being Successfully added using Add Place API # src/test/java/features/placeValidations.feature:15
+  Given Add Place Payload with "BBHouse" "Spanish" "Sea Cross Center"               # stepDefinitions.StepDefinition.add_place_payload_with(java.lang.String,java.lang.String,java.lang.String)
+  When user calls "addPlaceAPI" with "POST" http request                            # stepDefinitions.StepDefinition.user_calls_with_http_request(java.lang.String,java.lang.String)
+  Then the API call got success with status code 200                                # stepDefinitions.StepDefinition.the_api_call_got_success_with_status_code(java.lang.Integer)
+  And "status" in response body is "OK"                                             # stepDefinitions.StepDefinition.in_response_body_is(java.lang.String,java.lang.String)
+  And "scope" in response body is "APP"                                             # stepDefinitions.StepDefinition.in_response_body_is(java.lang.String,java.lang.String)
+  And verify place_Id created maps to "BBHouse" using "getPlaceAPI"                 # stepDefinitions.StepDefinition.verify_place_id_created_maps_to_using(java.lang.String,java.lang.String)
+
+@DeletePlace @Regression
+Scenario: Verify if Delete Place functionality is working   # src/test/java/features/placeValidations.feature:18
+  Given Delete Place Payload                                # stepDefinitions.StepDefinition.delete_place_payload()
+  When user calls "deletePlaceAPI" with "POST" http request # stepDefinitions.StepDefinition.user_calls_with_http_request(java.lang.String,java.lang.String)
+  Then the API call got success with status code 200        # stepDefinitions.StepDefinition.the_api_call_got_success_with_status_code(java.lang.Integer)
+  And "status" in response body is "OK"                     # stepDefinitions.StepDefinition.in_response_body_is(java.lang.String,java.lang.String)
